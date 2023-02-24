@@ -12,6 +12,11 @@ import CoreLocation
 class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     // once we define it here (as an OO protocol), even empty, we can add it to the main entry as a .environmentObject()
     
+    // PUBLISHED PROPERTIES - now that we've parsed some data, let's publish some of these objects
+    @Published var restaurants = [Business]()
+    @Published var sights = [Business]()
+    
+    
     // the basics if you are using CoreLocation
     var locationManager = CLLocationManager()
     
@@ -72,8 +77,8 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
             locationManager.stopUpdatingLocation()
             
             // if we have the coords of the user, send to the yelp API
-            getBusiness(category: "arts", location: userLocation!)
-            getBusiness(category: "restaurants", location: userLocation!)
+            getBusiness(category: Constants.sightsKey, location: userLocation!)
+            getBusiness(category: Constants.restaurantsKey, location: userLocation!)
         }
        
     }
@@ -93,7 +98,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         
         //let url = URL(string: urlString)
         // METHOD 2:  urlComponents array w/optional chaining
-        var urlComponents = URLComponents(string: "https://api.yelp.com/v3/businesses/search")
+        var urlComponents = URLComponents(string: Constants.apiUrl)
         urlComponents?.queryItems = [
             URLQueryItem(name: "latitude", value: String(location.coordinate.latitude)),
             URLQueryItem(name: "longitude", value: String(location.coordinate.longitude)),
@@ -107,7 +112,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
             // Create URL Request
             var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
             request.httpMethod = "GET"
-            request.addValue("Bearer aX2SAw-F9VYlCk5oQnHN4i2942PyqnTRpDDiyoD_JCvyr6mR4XpIboj_XzFKk6FFH1LY0KmBL7Z08Ae-3rAk6izBh8PczkeVtKkTiPS83d0H2cfiwcxerShcY0vlY3Yx", forHTTPHeaderField: "Authorization")
+            request.addValue("Bearer \(Constants.apiKey)", forHTTPHeaderField: "Authorization")
             
             // Get URLSession
             let session = URLSession.shared
@@ -116,7 +121,40 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
             let dataTask = session.dataTask(with: request) { (data, response, error) in
                 // check that there isnt an error
                 if error == nil {
-                    print(response)
+                    //print(response)
+                    do {
+                        // Parse the data
+                        let decoder = JSONDecoder()
+                        // What (structure/class) are we decoding into?  BusinessSearch!
+                        let result = try decoder.decode(BusinessSearch.self, from: data!)
+                        //print(result)
+                        
+                        // THIS is a BACKGROUND THREAD!!!  Don't assign things to a @Published property in the background thread
+                        // Instead, put it in the DispatchQueue
+                        DispatchQueue.main.async {
+                            // Assign results to appropriate property
+//                            if category == Constants.sightsKey {
+//                                self.sights = result.businesses
+//                            }
+//                            else if category == Constants.restaurantsKey {
+//                                self.restaurants = result.businesses
+//                            }
+                            // If we have lots of categories, SWITCH scales better
+                            switch category {
+                            case Constants.sightsKey:
+                                self.sights = result.businesses
+                            case Constants.restaurantsKey:
+                                self.restaurants = result.businesses
+                            default:
+                                break
+                            }
+                        }
+                       
+                    }
+                    catch {
+                        print(error)
+                    }
+
                 }
             }
             // Start the datatask
