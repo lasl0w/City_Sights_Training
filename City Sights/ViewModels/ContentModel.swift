@@ -16,6 +16,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     @Published var restaurants = [Business]()
     @Published var sights = [Business]()
     
+    // Publish the authorizationState so we can complete onboarding - default to not determined
+    @Published var authorizationState = CLAuthorizationStatus.notDetermined
+    
     
     // the basics if you are using CoreLocation
     var locationManager = CLLocationManager()
@@ -47,6 +50,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     // we have to implement these in order to conform to the protocol
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         // gets called as a result of .requestWhenInUseAuthorization()
+        
+        // Update the published property, so the home view can react
+        authorizationState = locationManager.authorizationStatus
         
         print(locationManager.authorizationStatus.rawValue)
         // enum values have dots!
