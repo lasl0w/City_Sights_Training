@@ -158,7 +158,7 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
                        
                     }
                     catch {
-                        print(error)
+                        print(error.localizedDescription)
                     }
 
                 }

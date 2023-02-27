@@ -9,8 +9,13 @@ import Foundation
 
 // Use the JSON response in Proxyman (or a sample response in the API doc) to model the response for decoding
 // Decodable b/c we need to decode the JSON response from the Yelp API
-struct Business: Decodable, Identifiable {
+class Business: Decodable, Identifiable, ObservableObject {
     // Identifiable so we can ForEach through our list without doing 'id: \.self'
+    // Switch to a CLASS to (1) let our function set the imageData and (2) to make it an ObservableObject to have published properties
+    
+    // use a byte buffer
+    @Published var imageData: Data?
+    
     
     // make everything optional as a safeguard - no results, etc
     // especially useful when the API doc doesn't specify which are guaranteed and not
@@ -33,7 +38,7 @@ struct Business: Decodable, Identifiable {
     var display_phone: String?
     var distance: Double?
     
-    // TODO: figure out why "Business does not conform to protocol Decodable
+    // TODO: figure out why "Business does not conform to protocol Decodable when using CodingKeys
     // use CodingKeys to perform mapping
 //    enum CodingKeys: String, CodingKey {
 //        case imageURL = "image_url"
@@ -41,7 +46,7 @@ struct Business: Decodable, Identifiable {
 //        case reviewCount = "review_count"
 //        case displayPhone = "display_phone"
 //        
-//        // still have to include all the other vars.  but no need to map.  lame.
+//        // still have to include all the other vars.  but no need to map.
 //        // indicating we still want that data
 //        case id
 //        case alias
@@ -56,6 +61,36 @@ struct Business: Decodable, Identifiable {
 //        case phone
 //        case distance
 //    }
+    
+    func getImageData() {
+        
+        // check that the iimage url isn't nil
+        guard image_url != nil else {
+            // if it IS nil, abort
+            return
+        }
+        
+        // Download the data for the image
+        
+        if let url = URL(string: image_url!){
+            // using optional binding
+            // get a session
+            let session = URLSession.shared
+            
+            // use one with a completion handler, so we can do something with the response
+            let dataTask = session.dataTask(with: url) { (data, response, error) in
+                if error == nil {
+                    
+                    // It's a published property so we need to make sure it happens in the main thread
+                    DispatchQueue.main.async {
+                        // Set the image data
+                        // self is immutable in a struct.  time to change it to a CLASS
+                        self.imageData = data
+                    }
+                }
+            }
+        }
+    }
 }
 
 struct Location: Decodable {

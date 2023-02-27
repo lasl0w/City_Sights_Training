@@ -10,10 +10,45 @@ import SwiftUI
 struct BusinessRow: View {
     
     // gotta have the business
-    var business: Business
+    // make an ObservedObject b/c we are going to be waiting on that image data to be populated
+    @ObservedObject var business: Business
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        // the parent VStack is basically all the content & the divider
+        VStack (alignment: .leading) {
+            
+            // the HStack is the meat of the content here.  i.e. - the row date
+            // Although there is some vert stacked content within...
+            // dream in VStacks, HStacks and ZStacks.....
+            HStack {
+                // Image - we start with an imageURL so we need to use UIImage
+                // publish imageData
+                let uiImage = UIImage(data: business.imageData ?? Data())
+                // create a swiftUI image from a UIKit image.  coalesce to an empty UIImage()
+                Image(uiImage: uiImage ?? UIImage())
+                
+                // Name and distance
+                VStack (alignment: .leading) {
+                    Text(business.name ?? "")
+                        .bold()
+                    Text(String(format: "%.1f", (business.distance ?? 0)/1000 ) + " miles away")
+                        .font(.caption)
+                }
+                
+                // Spacer to push stars to the right
+                Spacer()
+                
+                // Star rating and number of reviews
+                VStack (alignment: .leading) {
+                    Image("regular_\(business.rating ?? 0)")
+                    Text("\(business.review_count ?? 0) Reviews")
+                        .font(.caption)
+                }
+            }
+            // Divider between each biz row
+            Divider()
+        }
     }
 }
 
