@@ -20,6 +20,9 @@ struct BusinessSection: View {
         // Use Section so you can apply header or footer
         Section(header: BusinessSectionHeader(title: title)) {
             ForEach(businesses) { business in
+                
+                // 
+                
                 BusinessRow(business: business)
             }
         }

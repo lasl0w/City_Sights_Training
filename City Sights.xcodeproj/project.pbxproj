@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F103FA0F29AEC554009C9406 /* BusinessDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = F103FA0E29AEC554009C9406 /* BusinessDetail.swift */; };
 		F112AF29299FE28C0085DDFB /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112AF28299FE28C0085DDFB /* Business.swift */; };
 		F112AF2B29A5D1B30085DDFB /* BusinessSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112AF2A29A5D1B30085DDFB /* BusinessSearch.swift */; };
 		F112AF2E29A8680E0085DDFB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F112AF2D29A8680E0085DDFB /* Constants.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F103FA0E29AEC554009C9406 /* BusinessDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessDetail.swift; sourceTree = "<group>"; };
 		F112AF28299FE28C0085DDFB /* Business.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		F112AF2A29A5D1B30085DDFB /* BusinessSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSearch.swift; sourceTree = "<group>"; };
 		F112AF2D29A8680E0085DDFB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -50,6 +52,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F103FA0D29AEC53B009C9406 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				F103FA0E29AEC554009C9406 /* BusinessDetail.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		F112AF2C29A867E60085DDFB /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +164,7 @@
 				F199273E29AB2802002EA13A /* BusinessSectionHeader.swift */,
 				F199274029ABF774002EA13A /* BusinessSection.swift */,
 				F14E9DBA29AC061E00F9F47D /* BusinessRow.swift */,
+				F103FA0D29AEC53B009C9406 /* Detail */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -234,6 +245,7 @@
 				F112AF29299FE28C0085DDFB /* Business.swift in Sources */,
 				F199273F29AB2802002EA13A /* BusinessSectionHeader.swift in Sources */,
 				F15077902993088A0054A6D2 /* CitySightsApp.swift in Sources */,
+				F103FA0F29AEC554009C9406 /* BusinessDetail.swift in Sources */,
 				F112AF2B29A5D1B30085DDFB /* BusinessSearch.swift in Sources */,
 				F199273D29A95893002EA13A /* BusinessList.swift in Sources */,
 				F199274129ABF774002EA13A /* BusinessSection.swift in Sources */,

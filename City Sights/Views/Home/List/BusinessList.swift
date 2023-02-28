@@ -14,7 +14,8 @@ struct BusinessList: View {
     
     var body: some View {
         
-        ScrollView {
+        // get rid of scroll bar indicator
+        ScrollView (showsIndicators: false){
             // Use Lazy b/c there could be many rows
             // Scrollview + VStack + Section combo - use pinnedViews property 
             

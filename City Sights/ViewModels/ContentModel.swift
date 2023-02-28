@@ -135,6 +135,20 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
                         let result = try decoder.decode(BusinessSearch.self, from: data!)
                         //print(result)
                         
+                        // Sort businesses by
+                        var businesses = result.businesses
+                        businesses.sort { (b1, b2) -> Bool in
+                            // if true, b1 should be in front of b2
+                            return b1.distance ?? 0 < b2.distance ?? 0
+                        }
+                
+                        // Call the get image function of the businesses
+                        for b in businesses {
+                            b.getImageData()
+                        }
+                        
+                        
+                        
                         // THIS is a BACKGROUND THREAD!!!  Don't assign things to a @Published property in the background thread
                         // Instead, put it in the DispatchQueue
                         DispatchQueue.main.async {
@@ -148,9 +162,9 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
                             // If we have lots of categories, SWITCH scales better
                             switch category {
                             case Constants.sightsKey:
-                                self.sights = result.businesses
+                                self.sights = businesses
                             case Constants.restaurantsKey:
-                                self.restaurants = result.businesses
+                                self.restaurants = businesses
                             default:
                                 break
                             }

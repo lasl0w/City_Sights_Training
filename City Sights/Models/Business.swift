@@ -23,11 +23,10 @@ class Business: Decodable, Identifiable, ObservableObject {
     var alias: String?
     var name: String?
     // using underscores temporarily for exact matching to API properties
-    // TODO alias names to our naming convention.  mapping.  DONE
-    var image_url: String?
-    var is_closed: Bool?
+    var imageUrl: String?
+    var isClosed: Bool?
     var url: String?
-    var review_count: Int?
+    var reviewCount: Int?
     var categories: [Category]?
     var rating: Double?
     var coordinates: Coordinate?
@@ -35,44 +34,47 @@ class Business: Decodable, Identifiable, ObservableObject {
     var price: String?
     var location: Location?
     var phone: String?
-    var display_phone: String?
+    var displayPhone: String?
     var distance: Double?
     
     // TODO: figure out why "Business does not conform to protocol Decodable when using CodingKeys
     // use CodingKeys to perform mapping
-//    enum CodingKeys: String, CodingKey {
-//        case imageURL = "image_url"
-//        case isClosed = "is_closed"
-//        case reviewCount = "review_count"
-//        case displayPhone = "display_phone"
-//        
-//        // still have to include all the other vars.  but no need to map.
-//        // indicating we still want that data
-//        case id
-//        case alias
-//        case name
-//        case url
-//        case categories
-//        case rating
-//        case coordinates
-//        case transactions
-//        case price
-//        case location
-//        case phone
-//        case distance
-//    }
-    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case alias
+        case name
+        case imageUrl = "image_url"
+        case isClosed = "is_closed"
+        case url
+        case reviewCount = "review_count"
+        case categories
+        case rating
+        case coordinates
+        case transactions
+        case price
+        case location
+        case phone
+        case displayPhone = "display_phone"
+        case distance
+        // still have to include all the other vars.  but no need to map.
+        // indicating we still want that data
+
+
+
+    }
+    // When should we call this function?  could do it in BusinessRow, but then it would call it many times
+    // instead, call it in the content model, when we are parsing the json
     func getImageData() {
         
         // check that the iimage url isn't nil
-        guard image_url != nil else {
+        guard imageUrl != nil else {
             // if it IS nil, abort
             return
         }
         
         // Download the data for the image
         
-        if let url = URL(string: image_url!){
+        if let url = URL(string: imageUrl!){
             // using optional binding
             // get a session
             let session = URLSession.shared
@@ -89,6 +91,7 @@ class Business: Decodable, Identifiable, ObservableObject {
                     }
                 }
             }
+            dataTask.resume()
         }
     }
 }

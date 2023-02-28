@@ -32,7 +32,7 @@ struct HomeView: View {
                     // Figma has a divider between the header and the list
                     Divider()
                     BusinessList()
-                }
+                }.padding([.horizontal, .top])
             }
             else {
                 

@@ -27,6 +27,11 @@ struct BusinessRow: View {
                 let uiImage = UIImage(data: business.imageData ?? Data())
                 // create a swiftUI image from a UIKit image.  coalesce to an empty UIImage()
                 Image(uiImage: uiImage ?? UIImage())
+                    .resizable()
+                // ensure .resizable is near the top, b/c it must work off the raw image
+                    .frame(width: 58, height: 58)
+                    .cornerRadius(5)
+                    .scaledToFit()
                 
                 // Name and distance
                 VStack (alignment: .leading) {
@@ -42,8 +47,8 @@ struct BusinessRow: View {
                 // Star rating and number of reviews
                 VStack (alignment: .leading) {
                     Image("regular_\(business.rating ?? 0)")
-                    Text("\(business.review_count ?? 0) Reviews")
-                        .font(.caption)
+                    //Text("\(business.review_count ?? 0) Reviews")
+                    //    .font(.caption)
                 }
             }
             // Divider between each biz row
