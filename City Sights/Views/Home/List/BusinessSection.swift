@@ -21,9 +21,12 @@ struct BusinessSection: View {
         Section(header: BusinessSectionHeader(title: title)) {
             ForEach(businesses) { business in
                 
-                // 
+                // NavigationView is in HomeView as it needs to encompass both sections... and i guess the header too
+                // NavigationLink with the label as a trailing closure
+                NavigationLink(destination: BusinessDetail(business: business)) {
+                    BusinessRow(business: business)
+                }
                 
-                BusinessRow(business: business)
             }
         }
     }

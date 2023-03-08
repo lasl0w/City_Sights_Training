@@ -18,32 +18,35 @@ struct HomeView: View {
         // Will show if there are sites
         if model.restaurants.count != 0 || model.sights.count != 0 {
             
-            // Determine if we should show list or map
-            if !isMapShowing {
-                // Show list
-                VStack {
-                    HStack {
-                        Image(systemName: "location")
-                        Text("San Francisco")
-                        // Spacer will push out button to the right
-                        Spacer()
-                        Text("Switch to map view")
-                    }
-                    // Figma has a divider between the header and the list
-                    Divider()
-                    BusinessList()
-                }.padding([.horizontal, .top])
+            // NavView is here.  NavLinks are in the BusinessRow
+            NavigationView {
+                // Determine if we should show list or map
+                if !isMapShowing {
+                    // Show list
+                    VStack {
+                        HStack {
+                            Image(systemName: "location")
+                            Text("San Francisco")
+                            // Spacer will push out button to the right
+                            Spacer()
+                            Text("Switch to map view")
+                        }
+                        // Figma has a divider between the header and the list
+                        Divider()
+                        BusinessList()
+                    }.padding([.horizontal, .top])
+                        .navigationBarHidden(true)
+                    // NavBarHidden is not added to the NavView, but on the child view
+                }
+                else {
+                    // show the map
+                }
             }
-            else {
-                
-            }
-            
         }
         else {
             // still waiting for data, so show spinner
             ProgressView()
         }
-
     }
 }
 

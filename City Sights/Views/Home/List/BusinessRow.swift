@@ -47,13 +47,14 @@ struct BusinessRow: View {
                 // Star rating and number of reviews
                 VStack (alignment: .leading) {
                     Image("regular_\(business.rating ?? 0)")
-                    //Text("\(business.review_count ?? 0) Reviews")
-                    //    .font(.caption)
+                    Text("\(business.reviewCount ?? 0) Reviews")
+                        .font(.caption)
                 }
             }
             // Divider between each biz row
             Divider()
         }
+        .foregroundColor(.black)
     }
 }
 

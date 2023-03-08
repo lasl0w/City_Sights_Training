@@ -94,6 +94,17 @@ class Business: Decodable, Identifiable, ObservableObject {
             dataTask.resume()
         }
     }
+    
+    // allows our previews to work with a dummy business
+    // you can call it (static functions) on the class, b/c it has nothing to do with a particular instance of a Business() object
+    static func getTestData() -> Business {
+        let b = Business()
+        // TODO: Set each of the dummy variables
+        b.id = "1"
+
+        
+        return b
+    }
 }
 
 struct Location: Decodable {
