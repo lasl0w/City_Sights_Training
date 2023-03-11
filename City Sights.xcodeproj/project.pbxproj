@@ -21,6 +21,7 @@
 		F199273F29AB2802002EA13A /* BusinessSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F199273E29AB2802002EA13A /* BusinessSectionHeader.swift */; };
 		F199274129ABF774002EA13A /* BusinessSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F199274029ABF774002EA13A /* BusinessSection.swift */; };
 		F1BF0A8729930B5800451E57 /* ContentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1BF0A8629930B5800451E57 /* ContentModel.swift */; };
+		F1DCB3BB29B85AE00010A025 /* BusinessMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DCB3BA29B85AE00010A025 /* BusinessMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		F199273E29AB2802002EA13A /* BusinessSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSectionHeader.swift; sourceTree = "<group>"; };
 		F199274029ABF774002EA13A /* BusinessSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessSection.swift; sourceTree = "<group>"; };
 		F1BF0A8629930B5800451E57 /* ContentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentModel.swift; sourceTree = "<group>"; };
+		F1DCB3BA29B85AE00010A025 /* BusinessMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		F112AF3129A8741F0085DDFB /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				F1DCB3B929B85AB60010A025 /* Map */,
 				F112AF3229A950210085DDFB /* HomeView.swift */,
 				F199273B29A9586C002EA13A /* List */,
 			);
@@ -169,6 +172,14 @@
 			path = List;
 			sourceTree = "<group>";
 		};
+		F1DCB3B929B85AB60010A025 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				F1DCB3BA29B85AE00010A025 /* BusinessMap.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -248,6 +259,7 @@
 				F103FA0F29AEC554009C9406 /* BusinessDetail.swift in Sources */,
 				F112AF2B29A5D1B30085DDFB /* BusinessSearch.swift in Sources */,
 				F199273D29A95893002EA13A /* BusinessList.swift in Sources */,
+				F1DCB3BB29B85AE00010A025 /* BusinessMap.swift in Sources */,
 				F199274129ABF774002EA13A /* BusinessSection.swift in Sources */,
 				F1BF0A8729930B5800451E57 /* ContentModel.swift in Sources */,
 				F112AF2E29A8680E0085DDFB /* Constants.swift in Sources */,

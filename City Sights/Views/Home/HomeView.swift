@@ -29,7 +29,9 @@ struct HomeView: View {
                             Text("San Francisco")
                             // Spacer will push out button to the right
                             Spacer()
-                            Text("Switch to map view")
+                            Button("Switch to map view") {
+                                self.isMapShowing = true
+                            }
                         }
                         // Figma has a divider between the header and the list
                         Divider()
@@ -40,6 +42,9 @@ struct HomeView: View {
                 }
                 else {
                     // show the map
+                    BusinessMap()
+                        .ignoresSafeArea()
+                    // we want it to be full screen
                 }
             }
         }
