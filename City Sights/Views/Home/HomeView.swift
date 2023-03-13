@@ -12,6 +12,9 @@ struct HomeView: View {
     @EnvironmentObject var model: ContentModel
     // Default view is list view.  This State var allows us to toggle list vs map
     @State var isMapShowing = false
+    // selectedBusiness is STATE here, but BINDING in the BizMap - 2-way, allowing read+write back and forth
+    // When we assign a selectedBusiness (after we detect a user tap), we trigger the sheet
+    @State var selectedBusiness: Business?
     
     var body: some View {
         
@@ -42,9 +45,19 @@ struct HomeView: View {
                 }
                 else {
                     // show the map
-                    BusinessMap()
+                    BusinessMap(selectedBusiness: $selectedBusiness)
                         .ignoresSafeArea()
                     // we want it to be full screen
+                        .sheet(item: $selectedBusiness) { business in
+                            
+                            // Create a business detail view instance
+                            // Pass in the selected business
+                            BusinessDetail(business: business)
+                            
+                        }
+                    // SHEET - usually use a bool, but this time use the item/content method
+                    // SHEET - content = businessDetail view, item = selected business (ontap)
+                    // SHEET (item) Needs to be a BINDING, so it should be a STATE var
                 }
             }
         }
