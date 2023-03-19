@@ -10,6 +10,9 @@ import SwiftUI
 struct BusinessDetail: View {
     
     var business: Business
+    // if we are not passing it and it's not used anywhere else, best practice is to make it private
+    // controls whether we show the Directions sheet or not
+    @State private var showDirections = false
     
     var body: some View {
         
@@ -50,20 +53,7 @@ struct BusinessDetail: View {
             // use Group to get around the 10 element limit
             Group {
                 
-                // Business name
-                Text(business.name!)
-                    .font(.title)
-                    .padding()
-                // loop through displayAddress after nil check
-                if business.location?.displayAddress! != nil {
-                    ForEach(business.location!.displayAddress!, id: \.self) { displayLine in
-                        Text(displayLine)
-                            .padding(.horizontal)
-                    }
-                }
-                
-                // Rating
-                Image("regular_\(business.rating ?? 0)")
+                BusinessTitle(business: business)
                     .padding()
                 
                 Divider()
@@ -128,7 +118,9 @@ struct BusinessDetail: View {
             
             // Get directions button
             Button {
-                // TODO: show directions
+                // show directions
+                // Using the .sheet modifier.  OnClick, trigger the sheet
+                showDirections = true
             } label: {
                 ZStack {
                     Rectangle()
@@ -142,6 +134,9 @@ struct BusinessDetail: View {
                 }
             }
             .padding()
+            .sheet(isPresented: $showDirections) {
+                DirectionsView(business: business)
+            }
         }
         
     }
