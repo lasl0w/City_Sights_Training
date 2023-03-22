@@ -34,6 +34,11 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
         locationManager.delegate = self
         
         
+
+    }
+    
+    func requestGeolocationPermission() {
+        
         // Request permission from the user - only use "WhenInUse" unless "Always" is truly needed
         locationManager.requestWhenInUseAuthorization()
         // must also set a specific KEY in the INFO.PLIST
