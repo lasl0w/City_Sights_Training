@@ -19,7 +19,8 @@ struct BusinessTitle: View {
             
             // Business name
             Text(business.name!)
-                .font(.title)
+                .font(.title2)
+                .bold()
             // loop through displayAddress after nil check
             if business.location?.displayAddress! != nil {
                 ForEach(business.location!.displayAddress!, id: \.self) { displayLine in

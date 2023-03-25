@@ -27,6 +27,7 @@
 		F1CAEBCF29C7AAB900824BF0 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CAEBCE29C7AAB900824BF0 /* OnboardingView.swift */; };
 		F1CAEBD229CAD20600824BF0 /* LocationDeniedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CAEBD129CAD20600824BF0 /* LocationDeniedView.swift */; };
 		F1CAEBD529CBA9AC00824BF0 /* YelpAttribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CAEBD429CBA9AC00824BF0 /* YelpAttribution.swift */; };
+		F1CAEBD729CC113E00824BF0 /* DashedDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1CAEBD629CC113E00824BF0 /* DashedDivider.swift */; };
 		F1DCB3BB29B85AE00010A025 /* BusinessMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DCB3BA29B85AE00010A025 /* BusinessMap.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,7 @@
 		F1CAEBCE29C7AAB900824BF0 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		F1CAEBD129CAD20600824BF0 /* LocationDeniedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDeniedView.swift; sourceTree = "<group>"; };
 		F1CAEBD429CBA9AC00824BF0 /* YelpAttribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YelpAttribution.swift; sourceTree = "<group>"; };
+		F1CAEBD629CC113E00824BF0 /* DashedDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedDivider.swift; sourceTree = "<group>"; };
 		F1DCB3BA29B85AE00010A025 /* BusinessMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusinessMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -209,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				F1CAEBD429CBA9AC00824BF0 /* YelpAttribution.swift */,
+				F1CAEBD629CC113E00824BF0 /* DashedDivider.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				F199273F29AB2802002EA13A /* BusinessSectionHeader.swift in Sources */,
 				F15077902993088A0054A6D2 /* CitySightsApp.swift in Sources */,
 				F103FA0F29AEC554009C9406 /* BusinessDetail.swift in Sources */,
+				F1CAEBD729CC113E00824BF0 /* DashedDivider.swift in Sources */,
 				F112AF2B29A5D1B30085DDFB /* BusinessSearch.swift in Sources */,
 				F10162F429C030B8002E8E5F /* BusinessTitle.swift in Sources */,
 				F199273D29A95893002EA13A /* BusinessList.swift in Sources */,

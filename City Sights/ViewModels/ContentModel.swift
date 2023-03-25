@@ -19,6 +19,10 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     // Publish the authorizationState so we can complete onboarding - default to not determined
     @Published var authorizationState = CLAuthorizationStatus.notDetermined
     
+    // Publish the placemark so we can see the users location (city/area name)
+    // starts out nil, so make it optional
+    @Published var placemark: CLPlacemark?
+    
     
     // the basics if you are using CoreLocation
     var locationManager = CLLocationManager()
@@ -86,6 +90,20 @@ class ContentModel: NSObject, CLLocationManagerDelegate, ObservableObject {
             // We have a good location
             // Stop requesting the location
             locationManager.stopUpdatingLocation()
+            
+            // Get the placemark of the user
+            let geocoder = CLGeocoder()
+            
+            geocoder.reverseGeocodeLocation(userLocation!) { (placemarks, error) in
+                // check that there aren't errors
+                
+                if error == nil && placemarks != nil {
+                    // Take the first placemark
+                    self.placemark = placemarks?.first
+                    // might be nil, but that's OK b/c self.placemark is optional anyway
+                }
+                
+            }
             
             // if we have the coords of the user, send to the yelp API
             getBusiness(category: Constants.sightsKey, location: userLocation!)

@@ -52,7 +52,8 @@ struct BusinessRow: View {
                 }
             }
             // Divider between each biz row
-            Divider()
+            DashedDivider()
+                .padding(.vertical)
         }
         .foregroundColor(.black)
     }

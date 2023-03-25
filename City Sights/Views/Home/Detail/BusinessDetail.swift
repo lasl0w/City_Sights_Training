@@ -53,10 +53,15 @@ struct BusinessDetail: View {
             // use Group to get around the 10 element limit
             Group {
                 
-                BusinessTitle(business: business)
-                    .padding()
+                HStack {
+                    BusinessTitle(business: business)
+                        .padding()
+                    Spacer()
+                    YelpAttribution(link: business.url!)
+                }
+
                 
-                Divider()
+                DashedDivider()
                 
                 // Phone
                 HStack {
@@ -73,7 +78,7 @@ struct BusinessDetail: View {
                 .padding()
                 
                 
-                Divider()
+                DashedDivider()
                 
                 // Reviews
                 HStack {
@@ -93,7 +98,7 @@ struct BusinessDetail: View {
                 .padding()
                 
                 
-                Divider()
+                DashedDivider()
                 
                 // Website
                 HStack {
@@ -113,7 +118,7 @@ struct BusinessDetail: View {
                 }
                 .padding()
                 
-                Divider()
+                DashedDivider()
             }
             
             // Get directions button
